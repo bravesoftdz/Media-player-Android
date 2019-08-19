@@ -1,0 +1,420 @@
+object FrmMain: TFrmMain
+  Left = 0
+  Top = 0
+  ClientHeight = 480
+  ClientWidth = 320
+  Fill.Color = claBlack
+  Fill.Kind = Solid
+  Transparency = True
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  ShowFullScreenIcon = True
+  OnCreate = FormCreate
+  OnResize = FormResize
+  DesignerMasterStyle = 0
+  object AHeader: TListBoxGroupHeader
+    TextSettings.HorzAlign = Center
+    StyledSettings = [Family, Size, Style, FontColor]
+    Position.Y = 45.000000000000000000
+    Size.Width = 316.000000000000000000
+    Size.Height = 45.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'MP4 List'
+  end
+  object Timer_Progress: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = Timer_ProgressTimer
+    Left = 128
+    Top = 58
+  end
+  object TabCtrl_APPP: TALTabControl
+    Align = Client
+    AnimationEnabled = False
+    Size.Width = 320.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 1
+    object TabItem_Main: TALTabItem
+      IsSelected = False
+      object ToolBar_Top: TToolBar
+        Size.Width = 320.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object GridPnLyt_List: TGridPanelLayout
+          Align = Client
+          Size.Width = 320.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          ColumnCollection = <
+            item
+              Value = 50.000000000000000000
+            end
+            item
+              Value = 50.000000000000000000
+            end>
+          ControlCollection = <
+            item
+              Column = 0
+              Control = Btn_Audio
+              Row = 0
+            end
+            item
+              Column = 1
+              Control = Btn_Video
+              Row = 0
+            end>
+          RowCollection = <
+            item
+              Value = 100.000000000000000000
+            end
+            item
+              SizeStyle = Auto
+            end>
+          object Btn_Audio: TButton
+            Align = Client
+            Margins.Right = 2.000000000000000000
+            Size.Width = 158.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'List All Music'
+            OnClick = Btn_AudioClick
+          end
+          object Btn_Video: TButton
+            Align = Client
+            Margins.Left = 2.000000000000000000
+            Size.Width = 158.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            Text = 'List All Videos'
+            OnClick = Btn_VideoClick
+          end
+        end
+      end
+      object Lv_Media: TListView
+        ItemAppearanceClassName = 'TListItemAppearance'
+        ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Transparent = True
+        Align = Client
+        Size.Width = 320.000000000000000000
+        Size.Height = 440.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        ItemAppearance.ItemHeight = 50
+        OnItemClick = Lv_MediaItemClick
+      end
+    end
+    object TabItem_Media: TALTabItem
+      IsSelected = True
+      object PlayerSurface: TALVideoPlayerSurface
+        Align = Client
+        Size.Width = 320.000000000000000000
+        Size.Height = 350.000000000000000000
+        Size.PlatformDefault = False
+        OnClick = PlayerSurfaceClick
+      end
+      object Lyt_Volume: TLayout
+        Align = Top
+        Size.Width = 320.000000000000000000
+        Size.Height = 65.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object Rect_Volume: TALRectangle
+          Anchors = [akLeft, akTop, akRight, akBottom]
+          Opacity = 0.800000011920928900
+          Size.Width = 320.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object FAni_OpacityUP: TFloatAnimation
+            Duration = 1.000000000000000000
+            Interpolation = Exponential
+            OnFinish = FAni_OpacityUPFinish
+            PropertyName = 'Opacity'
+            StartValue = 0.800000011920928900
+            StopValue = 0.000000000000000000
+          end
+          object FAni_SlideUP: TFloatAnimation
+            Delay = 0.200000002980232200
+            Duration = 0.500000000000000000
+            Interpolation = Cubic
+            OnProcess = FAni_SlideUPProcess
+            OnFinish = FAni_SlideUPFinish
+            PropertyName = 'Position.Y'
+            StartValue = 0.000000000000000000
+            StopValue = -65.000000000000000000
+          end
+          object Lyt_SetVolume: TALLayout
+            Align = Bottom
+            Position.Y = 41.000000000000000000
+            Size.Width = 320.000000000000000000
+            Size.Height = 24.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object TB_Volume: TALTrackBar
+              Thumb.Fill.Color = claWhite
+              Thumb.Stroke.Color = xFFD5D5D5
+              Thumb.XRadius = 16.000000000000000000
+              Thumb.YRadius = 16.000000000000000000
+              Thumb.Glyph.Size.Width = 24.000000000000000000
+              Thumb.Glyph.Size.Height = 24.000000000000000000
+              Thumb.Glyph.Size.PlatformDefault = False
+              BackGround.Align = VertCenter
+              BackGround.Fill.Color = xFFC5C5C5
+              BackGround.Position.X = 16.000000000000000000
+              BackGround.Position.Y = 11.000000000000000000
+              BackGround.Size.Width = 268.000000000000000000
+              BackGround.Size.Height = 2.000000000000000000
+              BackGround.Size.PlatformDefault = False
+              BackGround.Stroke.Kind = None
+              Highlight.Fill.Color = xFF167EFC
+              Highlight.Size.Width = 134.000000000000000000
+              Highlight.Size.Height = 2.000000000000000000
+              Highlight.Size.PlatformDefault = False
+              Highlight.Stroke.Kind = None
+              Align = Client
+              Max = 1.000000000000000000
+              Orientation = Horizontal
+              Margins.Left = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Size.Width = 300.000000000000000000
+              Size.Height = 24.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Value = 0.500000000000000000
+              OnChange = TB_VolumeChange
+            end
+          end
+          object Lyt_ToolUP: TALLayout
+            Align = Client
+            Size.Width = 320.000000000000000000
+            Size.Height = 41.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object Btn_Back: TSpeedButton
+              Align = MostLeft
+              Size.Width = 57.000000000000000000
+              Size.Height = 41.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'priortoolbutton'
+              Text = 'Back'
+              OnClick = Btn_BackClick
+            end
+            object Lyt_Info: TALLayout
+              Align = Right
+              Position.X = 220.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 41.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              object Txt_Info: TALText
+                Align = Client
+                Size.Width = 100.000000000000000000
+                Size.Height = 41.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.WordWrap = True
+              end
+            end
+            object Lbl_Progress: TLabel
+              Align = Client
+              AutoSize = True
+              StyledSettings = [Family, Size, Style]
+              Size.Width = 163.000000000000000000
+              Size.Height = 41.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.FontColor = claCrimson
+              TextSettings.HorzAlign = Center
+              Text = 'Lbl_Progress'
+              TabOrder = 2
+            end
+          end
+        end
+      end
+      object Lyt_Ctrl: TLayout
+        Align = Bottom
+        Position.Y = 415.000000000000000000
+        Size.Width = 320.000000000000000000
+        Size.Height = 65.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Rect_Ctrls: TALRectangle
+          Align = Client
+          Opacity = 0.800000011920928900
+          Size.Width = 320.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object FAni_OpacityDown: TFloatAnimation
+            Duration = 1.000000000000000000
+            Interpolation = Exponential
+            OnFinish = FAni_OpacityDownFinish
+            PropertyName = 'Opacity'
+            StartValue = 0.800000011920928900
+            StopValue = 0.000000000000000000
+          end
+          object FAni_SlideDown: TFloatAnimation
+            Delay = 0.200000002980232200
+            Duration = 0.500000000000000000
+            Interpolation = Cubic
+            OnProcess = FAni_SlideDownProcess
+            OnFinish = FAni_SlideDownFinish
+            PropertyName = 'Position.Y'
+            StartValue = 0.000000000000000000
+            StopValue = 65.000000000000000000
+          end
+          object GridPnLyt_Ctrl: TGridPanelLayout
+            Align = Client
+            Size.Width = 320.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            ColumnCollection = <
+              item
+                Value = 25.000000000000000000
+              end
+              item
+                Value = 25.000000000000000000
+              end
+              item
+                Value = 25.000000000000000000
+              end
+              item
+                Value = 25.000000000000000000
+              end>
+            ControlCollection = <
+              item
+                Column = 0
+                Control = bToTheEnd
+                Row = 0
+              end
+              item
+                Column = 1
+                Control = bToTheStart
+                Row = 0
+              end
+              item
+                Column = 2
+                Control = b10SecForward
+                Row = 0
+              end
+              item
+                Column = 3
+                Control = b10SecBackward
+                Row = 0
+              end>
+            RowCollection = <
+              item
+                Value = 100.000000000000000000
+              end
+              item
+                SizeStyle = Auto
+              end>
+            object bToTheEnd: TButton
+              Align = Client
+              Anchors = []
+              Size.Width = 80.000000000000000000
+              Size.Height = 40.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'arrowrighttoolbutton'
+              TabOrder = 0
+              Text = 'To The End'
+              OnClick = bToTheEndClick
+            end
+            object bToTheStart: TButton
+              Align = Client
+              Anchors = []
+              Size.Width = 80.000000000000000000
+              Size.Height = 40.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'arrowlefttoolbutton'
+              TabOrder = 1
+              Text = 'To The Start'
+              OnClick = bToTheStartClick
+            end
+            object b10SecForward: TButton
+              Align = Client
+              Anchors = []
+              Size.Width = 80.000000000000000000
+              Size.Height = 40.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'forwardtoolbuttonbordered'
+              TabOrder = 2
+              Text = '10 Sec >'
+              OnClick = b10SecForwardClick
+            end
+            object b10SecBackward: TButton
+              Align = Client
+              Anchors = []
+              Size.Width = 80.000000000000000000
+              Size.Height = 40.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'rewindtoolbutton'
+              TabOrder = 3
+              Text = '10 Sec <'
+              OnClick = b10SecBackwardClick
+            end
+          end
+          object Lyt_Progress: TLayout
+            Align = Top
+            Size.Width = 320.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object TB_Position: TALTrackBar
+              Thumb.Fill.Color = claWhite
+              Thumb.Stroke.Color = xFFD5D5D5
+              Thumb.XRadius = 16.000000000000000000
+              Thumb.YRadius = 16.000000000000000000
+              Thumb.Glyph.Size.Width = 25.000000000000000000
+              Thumb.Glyph.Size.Height = 25.000000000000000000
+              Thumb.Glyph.Size.PlatformDefault = False
+              BackGround.Align = VertCenter
+              BackGround.Fill.Color = xFFC5C5C5
+              BackGround.Position.X = 16.000000000000000000
+              BackGround.Position.Y = 11.000000000000000000
+              BackGround.Size.Width = 268.000000000000000000
+              BackGround.Size.Height = 2.000000000000000000
+              BackGround.Size.PlatformDefault = False
+              BackGround.Stroke.Kind = None
+              Highlight.Fill.Color = xFF167EFC
+              Highlight.Size.Height = 2.000000000000000000
+              Highlight.Size.PlatformDefault = False
+              Highlight.Stroke.Kind = None
+              Align = Client
+              Orientation = Horizontal
+              Margins.Left = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Size.Width = 300.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              OnChange = TB_PositionChange
+            end
+          end
+        end
+      end
+      object Timer_DoHideCtrls: TTimer
+        Enabled = False
+        Interval = 7000
+        OnTimer = Timer_DoHideCtrlsTimer
+        Left = 48
+        Top = 57
+      end
+    end
+  end
+  object Timer_Info: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = Timer_InfoTimer
+    Left = 216
+    Top = 60
+  end
+end
